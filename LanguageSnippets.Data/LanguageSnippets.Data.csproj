@@ -54,6 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IdentityModels.cs" />
+    <Compile Include="Migrations\201712062150199_AddSnippetEntity.cs" />
+    <Compile Include="Migrations\201712062150199_AddSnippetEntity.Designer.cs">
+      <DependentUpon>201712062150199_AddSnippetEntity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Snippet.cs" />
   </ItemGroup>
@@ -66,6 +71,11 @@
       <Project>{b077f790-3cd9-4d95-870c-bf1a27b771e2}</Project>
       <Name>LanguageSnippets.Models</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201712062150199_AddSnippetEntity.resx">
+      <DependentUpon>201712062150199_AddSnippetEntity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
