@@ -15,10 +15,13 @@
             @Html.DisplayNameFor(model => model.SnippetId)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.IsStarred)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Phrase)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IsStarred)
+            @Html.DisplayNameFor(model => model.Language)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreatedUTC)
@@ -32,10 +35,13 @@
             @Html.DisplayFor(modelItem => item.SnippetId)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.IsStarred)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Phrase)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.SnippetId })
+            @Html.DisplayFor(modelItem => item.Language)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedUTC)
@@ -49,30 +55,3 @@
 }
 
 </table>
-
-@section scripts {
-    <script language="javascript" type="text/javascript">
-        $(document).ready(function () {
-            $("i[data-toggle='star']")
-                .css({ "cursor": "pointer" })
-                .click(function (e) {
-                    var target = $(e.target);
-                    var noteId = target.attr("data-id");
-                    var starSet = target.hasClass("glyphicon-star");
-
-                    $.ajax({
-                        method: starSet ? "DELETE" : "PUT",
-                        url: "/api/note/" + noteId + "/star",
-                        data: null
-                    })
-                    .done(function (r) {
-                        target.removeClass();
-                        target.addClass("glyphicon " + (starSet ? "glyphicon-star-empty" : "glyphicon-star"));
-                    })
-                    .fail(function (r) {
-                        alert("Failed to change star status");
-                    });
-                });
-        });
-    </script>
-}

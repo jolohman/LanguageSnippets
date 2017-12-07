@@ -10,10 +10,12 @@ namespace LanguageSnippets.Models
     public class SnippetListItem
     {
         public int SnippetId { get; set; }
-        public string Phrase { get; set; }
-
         [UIHint("Starred")]
         public bool IsStarred { get; set; }
+
+        public string Phrase { get; set; }
+
+        public string Language { get; set; }
 
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUTC { get; set; }
