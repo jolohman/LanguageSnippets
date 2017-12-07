@@ -1,4 +1,6 @@
 ﻿using LanguageSnippets.Models;
+using LanguageSnippets.Services;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,10 @@ namespace LanguageSnippets.Web.Controllers
         // GET: Snippet
         public ActionResult Index()
         {
-            var model = new SnippetListItem[0];
+           
+            var service = CreateSnippetService();
+            var model = service.GetSnippet();
+
             return View(model);
         }
 
@@ -26,12 +31,29 @@ namespace LanguageSnippets.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(SnippetCreate model)
         {
-            if(ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-
+                return View(model);
             }
 
+            var service = CreateSnippetService();
+
+            if (service.CreateSnippet(model))
+            {
+                TempData["SaveResult"] = "Snippet was created!";
+                return RedirectToAction("Index");
+            };
+
+            ModelState.AddModelError("", "Sorry, your snippet could not be created. Please try again.");
+
             return View(model);
+        }
+
+        private SnippetService CreateSnippetService()
+        {
+            var userId = Guid.Parse(User.Identity.GetUserId());
+            var service = new SnippetService(userId);
+            return service;
         }
     }
 }

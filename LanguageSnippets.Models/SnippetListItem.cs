@@ -10,7 +10,9 @@ namespace LanguageSnippets.Models
     public class SnippetListItem
     {
         public int SnippetId { get; set; }
+
         [UIHint("Starred")]
+        [Display(Name ="Important")]
         public bool IsStarred { get; set; }
 
         public string Phrase { get; set; }
@@ -18,7 +20,7 @@ namespace LanguageSnippets.Models
         public string Language { get; set; }
 
         [Display(Name = "Created")]
-        public DateTimeOffset CreatedUTC { get; set; }
+        public DateTimeOffset CreatedUtc { get; set; }
 
         public override string ToString() => $"[{SnippetId}] {Phrase}";
     }

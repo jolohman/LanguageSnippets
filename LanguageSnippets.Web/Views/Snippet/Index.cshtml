@@ -9,6 +9,18 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@if(TempData.ContainsKey("SaveResult"))
+{
+
+    <div class="alert alert-success fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert">
+            <span>&times;</span>
+        </button>
+        @TempData["SaveResult"]
+    </div>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -24,7 +36,7 @@
             @Html.DisplayNameFor(model => model.Language)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedUTC)
+            @Html.DisplayNameFor(model => model.CreatedUtc)
         </th>
         <th></th>
     </tr>
@@ -35,7 +47,7 @@
             @Html.DisplayFor(modelItem => item.SnippetId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsStarred)
+            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.SnippetId })
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Phrase)
@@ -44,14 +56,41 @@
             @Html.DisplayFor(modelItem => item.Language)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CreatedUTC)
+            @Html.DisplayFor(modelItem => item.CreatedUtc)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.SnippetId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SnippetId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SnippetId })
         </td>
     </tr>
 }
 
 </table>
+
+@section scripts {
+    <script language="javascript" type="text/javascript">
+        $(document).ready(function () {
+            $("i[data-toggle='star']")
+                .css({ "cursor": "pointer" })
+                .click(function (e) {
+                    var target = $(e.target);
+                    var noteId = target.attr("data-id");
+                    var starSet = target.hasClass("glyphicon-star");
+
+                    $.ajax({
+                        method: starSet ? "DELETE" : "PUT",
+                        url: "/api/note/" + noteId + "/star",
+                        data: null
+                    })
+                    .done(function (r) {
+                        target.removeClass();
+                        target.addClass("glyphicon " + (starSet ? "glyphicon-star-empty" : "glyphicon-star"));
+                    })
+                    .fail(function (r) {
+                        alert("Failed to change star status");
+                    });
+                });
+        });
+    </script>
+}

@@ -54,10 +54,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SnippetService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LanguageSnippets.Contracts\LanguageSnippets.Contracts.csproj">
+      <Project>{DFCE93EF-A93B-4BF0-AE75-2081F654BDC1}</Project>
+      <Name>LanguageSnippets.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LanguageSnippets.Data\LanguageSnippets.Data.csproj">
+      <Project>{9d7feb75-d56c-44de-9243-909447f40a96}</Project>
+      <Name>LanguageSnippets.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LanguageSnippets.Models\LanguageSnippets.Models.csproj">
+      <Project>{b077f790-3cd9-4d95-870c-bf1a27b771e2}</Project>
+      <Name>LanguageSnippets.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

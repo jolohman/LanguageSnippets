@@ -9,8 +9,7 @@ namespace LanguageSnippets.Data.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
-            ContextKey = "LanguageSnippets.Data.ApplicationDbContext";
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(LanguageSnippets.Data.ApplicationDbContext context)

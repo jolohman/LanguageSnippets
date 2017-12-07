@@ -7,13 +7,13 @@ namespace LanguageSnippets.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddSnippetEntity : IMigrationMetadata
+    public sealed partial class initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddSnippetEntity));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712062150199_AddSnippetEntity"; }
+            get { return "201712071901565_initial"; }
         }
         
         string IMigrationMetadata.Source
