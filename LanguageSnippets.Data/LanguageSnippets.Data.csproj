@@ -58,6 +58,10 @@
     <Compile Include="Migrations\201712062150199_AddSnippetEntity.Designer.cs">
       <DependentUpon>201712062150199_AddSnippetEntity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712062231229_AddedIsStarredColumn.cs" />
+    <Compile Include="Migrations\201712062231229_AddedIsStarredColumn.Designer.cs">
+      <DependentUpon>201712062231229_AddedIsStarredColumn.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Snippet.cs" />
@@ -75,6 +79,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712062150199_AddSnippetEntity.resx">
       <DependentUpon>201712062150199_AddSnippetEntity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712062231229_AddedIsStarredColumn.resx">
+      <DependentUpon>201712062231229_AddedIsStarredColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
