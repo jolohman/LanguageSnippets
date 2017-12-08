@@ -22,6 +22,8 @@ namespace LanguageSnippets.Models
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
 
+        public DateTimeOffset ModifiedUtc { get; set; }
+
         public override string ToString() => $"[{SnippetId}] {Phrase}";
     }
 }

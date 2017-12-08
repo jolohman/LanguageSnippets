@@ -28,7 +28,9 @@ namespace LanguageSnippets.Services
 
         public bool CreateSnippet(SnippetCreate model)
         {
-            var entity =
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
                 new Snippet()
                 {
                     OwnerId = _userId,
@@ -40,62 +42,17 @@ namespace LanguageSnippets.Services
 
                 };
 
-            using (var ctx = new ApplicationDbContext())
-            {
                 ctx.Snippets.Add(entity);
-                return ctx.SaveChanges() == 1;
-            }
-        }
-
-        public bool EditSnippet(SnippetEdit model)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Snippets
-                        .Single(e => e.SnippetId == model.SnippetId && e.OwnerId == _userId);
-
-                entity.IsStarred = model.IsStarred;
-                entity.Phrase = model.Phrase;
-                entity.Language = model.Language;
-                entity.Meaning = model.Meaning;
-                entity.ModifiedUtc = DateTimeOffset.UtcNow;
 
                 return ctx.SaveChanges() == 1;
             }
-        }
-
-        public IEnumerable<SnippetListItem> GetSnippet()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Snippets
-                        .Where(e => e.OwnerId == _userId)
-                        .Select(
-                            e =>
-                                new SnippetListItem
-                                {
-                                    SnippetId = e.SnippetId,
-                                    Phrase = e.Phrase,
-                                    IsStarred = e.IsStarred,
-                                    Language = e.Language,
-                                    CreatedUtc = e.CreatedUtc
-                                }
-                        );
-
-                return query.ToArray();
-            }
-            
         }
 
         public SnippetDetail GetSnippetById(int snippetId)
-        {             
+        {
             Snippet entity;
 
-            using (var ctx = new GetSnippetFromDatabase())
+            using (var ctx = new ApplicationDbContext())
             {
                 entity = GetSnippetFromDatabase(ctx, snippetId);
             }
@@ -111,7 +68,49 @@ namespace LanguageSnippets.Services
                     CreatedUtc = entity.CreatedUtc,
                     ModifiedUtc = entity.ModifiedUtc,
 
-                };           
+                };
+        }
+
+        public bool EditSnippet(SnippetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = GetSnippetFromDatabase(ctx, model.SnippetId);
+
+                if (entity == null) return false;
+
+                entity.IsStarred = model.IsStarred;
+                entity.Phrase = model.Phrase;
+                entity.Language = model.Language;
+                entity.Meaning = model.Meaning;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<SnippetListItem> GetSnippet()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                return
+                    ctx
+                        .Snippets
+                        .Where(e => e.OwnerId == _userId)
+                        .Select(
+                            e =>
+                                new SnippetListItem
+                                {
+                                    SnippetId = e.SnippetId,
+                                    Phrase = e.Phrase,
+                                    IsStarred = e.IsStarred,
+                                    Language = e.Language,
+                                    CreatedUtc = e.CreatedUtc,
+                                    ModifiedUtc = e.ModifiedUtc
+                                })
+                        .ToArray();
+            }
+            
         }
 
         public bool DeleteSnippet(int snippetId)
