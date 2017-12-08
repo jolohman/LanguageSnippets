@@ -70,7 +70,7 @@ namespace LanguageSnippets.Web.Controllers
                     Meaning = detail.Meaning,
                 };
 
-            return View();
+            return View(model);
         }
         
         [HttpPost]
