@@ -262,6 +262,7 @@
     <Content Include="Views\Snippet\Index.cshtml" />
     <Content Include="Views\Snippet\Details.cshtml" />
     <Content Include="Views\Snippet\Edit.cshtml" />
+    <Content Include="Views\Snippet\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

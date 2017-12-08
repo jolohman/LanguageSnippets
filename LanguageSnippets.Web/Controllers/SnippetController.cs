@@ -100,6 +100,29 @@ namespace LanguageSnippets.Web.Controllers
             return View(model);
         }
 
+        [ActionName("Delete")]
+        public ActionResult Delete(int id)
+        {
+            var service = CreateSnippetService();
+            var model = service.GetSnippetById(id);
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeletePost(int id)
+        {
+            var service = CreateSnippetService();
+
+            service.DeleteSnippet(id);
+
+            TempData["SaveResult"] = "Your snippet was deleted";
+
+            return RedirectToAction("Index");
+        }
+
         private SnippetService CreateSnippetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

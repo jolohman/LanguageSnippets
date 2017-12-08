@@ -14,5 +14,6 @@ namespace LanguageSnippets.Contracts
         IEnumerable<SnippetListItem> GetSnippet();
         SnippetDetail GetSnippetById(int SnippetId);
         bool EditSnippet(SnippetEdit model);
+        bool DeleteSnippet(int snippetId);
     }
 }

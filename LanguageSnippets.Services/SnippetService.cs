@@ -107,5 +107,20 @@ namespace LanguageSnippets.Services
 
             }
         }
+
+        public bool DeleteSnippet(int snippetId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Snippets
+                        .Single(e => e.SnippetId == snippetId && e.OwnerId == _userId);
+
+                ctx.Snippets.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
