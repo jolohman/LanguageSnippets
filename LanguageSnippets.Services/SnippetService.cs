@@ -39,6 +39,25 @@ namespace LanguageSnippets.Services
             }
         }
 
+        public bool EditSnippet(SnippetEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Snippets
+                        .Single(e => e.SnippetId == model.SnippetId && e.OwnerId == _userId);
+
+                entity.IsStarred = model.IsStarred;
+                entity.Phrase = model.Phrase;
+                entity.Language = model.Language;
+                entity.Meaning = model.Meaning;
+                entity.ModifiedUtc = DateTimeOffset.UtcNow;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
         public IEnumerable<SnippetListItem> GetSnippet()
         {
             using (var ctx = new ApplicationDbContext())

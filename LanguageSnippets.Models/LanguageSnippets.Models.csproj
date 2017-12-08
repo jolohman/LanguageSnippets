@@ -56,6 +56,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SnippetCreate.cs" />
     <Compile Include="SnippetDetail.cs" />
+    <Compile Include="SnippetEdit.cs" />
     <Compile Include="SnippetListItem.cs" />
   </ItemGroup>
   <ItemGroup>

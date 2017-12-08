@@ -57,6 +57,49 @@ namespace LanguageSnippets.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Edit (int id)
+        {
+            var service = CreateSnippetService();
+            var detail = service.GetSnippetById(id);
+            var model =
+                new SnippetEdit
+                {
+                    SnippetId = detail.SnippetId,                   
+                    Phrase = detail.Phrase,
+                    Language = detail.Language,
+                    Meaning = detail.Meaning,
+                };
+
+            return View();
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, SnippetEdit model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            if(model.SnippetId != id)
+            {
+                ModelState.AddModelError("", "Id Mismatch");
+                return View(model);
+            }
+
+            var service = CreateSnippetService();
+
+            if (service.EditSnippet(model))
+            {
+                TempData["SaveResult"] = "Your note was updated";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Your note could not be updated.");
+            return View(model);
+        }
+
         private SnippetService CreateSnippetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

@@ -7,21 +7,21 @@ using System.Threading.Tasks;
 
 namespace LanguageSnippets.Models
 {
-    public class SnippetCreate
+    public class SnippetEdit
     {
-        [Required]
+        public int SnippetId { get; set; }
+
+        [Display(Name = "Important")]
+        public bool IsStarred { get; set; }
+
         [MaxLength(120)]
         public string Phrase { get; set; }
 
-        public bool IsStarred { get; set; }
+        [MaxLength(50)]
+        public string Language { get; set; }
 
         [MaxLength(140)]
         public string Meaning { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Language { get; set; }
-
-        public override string ToString() => Phrase;
     }
 }
