@@ -77,14 +77,14 @@ namespace LanguageSnippets.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, SnippetEdit model)
         {
-            if (!ModelState.IsValid)
+            if(model.SnippetId != id)
             {
+                ModelState.AddModelError("", "Id Mismatch... Better luck next time");
                 return View(model);
             }
 
-            if(model.SnippetId != id)
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError("", "Id Mismatch");
                 return View(model);
             }
 

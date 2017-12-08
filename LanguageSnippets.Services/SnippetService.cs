@@ -11,6 +11,14 @@ namespace LanguageSnippets.Services
 {
     public class SnippetService : ISnippetService
     {
+        private Snippet GetSnippetFromDatabase(ApplicationDbContext context, int snippetId)
+        {
+            return
+                context
+                       .Snippets
+                       .SingleOrDefault(e => e.SnippetId == snippetId && e.OwnerId == _userId);
+        }
+
         private readonly Guid _userId;
 
         public SnippetService(Guid userId)
@@ -84,28 +92,26 @@ namespace LanguageSnippets.Services
         }
 
         public SnippetDetail GetSnippetById(int snippetId)
-        {
-            using (var ctx = new ApplicationDbContext())
+        {             
+            Snippet entity;
+
+            using (var ctx = new GetSnippetFromDatabase())
             {
-                var entity =
-                    ctx
-                        .Snippets
-                        .Single (e => e.SnippetId == snippetId && e.OwnerId == _userId);
-
-                return
-                    new SnippetDetail
-                    {
-                        IsStarred = entity.IsStarred,
-                        Phrase = entity.Phrase,
-                        Language = entity.Language,
-                        Meaning = entity.Meaning,
-                        CreatedUtc = entity.CreatedUtc,
-                        SnippetId = entity.SnippetId,
-                        ModifiedUtc = entity.ModifiedUtc,
-
-                    };
-
+                entity = GetSnippetFromDatabase(ctx, snippetId);
             }
+
+            if (entity == null) return new SnippetDetail();
+
+            return
+                new SnippetDetail
+                {
+                    Phrase = entity.Phrase,
+                    Language = entity.Language,
+                    Meaning = entity.Meaning,
+                    CreatedUtc = entity.CreatedUtc,
+                    ModifiedUtc = entity.ModifiedUtc,
+
+                };           
         }
 
         public bool DeleteSnippet(int snippetId)
