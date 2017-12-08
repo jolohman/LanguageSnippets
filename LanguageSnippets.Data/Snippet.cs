@@ -11,27 +11,26 @@ namespace LanguageSnippets.Data
     public class Snippet
     {
         [Key]
-        public int      SnippetId           { get; set; }
+        public int SnippetId { get; set; }
 
         [Required]
-        public Guid     OwnerId             { get; set; }
+        public Guid OwnerId { get; set; }
 
         [Required]
-        public string   Phrase              { get; set; }
+        public string Phrase { get; set; }
 
         [Required]
-        public string   Language            { get; set; }
+        public string Language { get; set; }
 
         [Required]
-        public string   Meaning             { get; set; }
+        public string Meaning { get; set; }
 
         [DefaultValue(false)]
-        public bool     IsStarred           { get; set; }
+        public bool IsStarred { get; set; }
 
         [Required]
-        public DateTimeOffset CreatedUtc    { get; set; }
-
+        public DateTimeOffset CreatedUtc { get; set; }
         
-        public DateTimeOffset ModifiedUtc   { get; set; }
+        public DateTimeOffset ModifiedUtc { get; set; }
     }
 }

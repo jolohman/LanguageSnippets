@@ -49,6 +49,14 @@ namespace LanguageSnippets.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Details(int id)
+        {
+            var service = CreateSnippetService();
+            var model = service.GetSnippetById(id);
+
+            return View(model);
+        }
+
         private SnippetService CreateSnippetService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());

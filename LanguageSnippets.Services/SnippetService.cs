@@ -63,5 +63,30 @@ namespace LanguageSnippets.Services
             }
             
         }
+
+        public SnippetDetail GetSnippetById(int snippetId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Snippets
+                        .Single (e => e.SnippetId == snippetId && e.OwnerId == _userId);
+
+                return
+                    new SnippetDetail
+                    {
+                        IsStarred = entity.IsStarred,
+                        Phrase = entity.Phrase,
+                        Language = entity.Language,
+                        Meaning = entity.Meaning,
+                        CreatedUtc = entity.CreatedUtc,
+                        SnippetId = entity.SnippetId,
+                        ModifiedUtc = entity.ModifiedUtc,
+
+                    };
+
+            }
+        }
     }
 }

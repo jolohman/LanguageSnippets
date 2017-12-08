@@ -12,6 +12,6 @@ namespace LanguageSnippets.Contracts
         
         bool CreateSnippet(SnippetCreate model);
         IEnumerable<SnippetListItem> GetSnippet();
-        
+        SnippetDetail GetSnippetById(int SnippetId);
     }
 }
