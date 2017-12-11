@@ -12,7 +12,6 @@ namespace LanguageSnippets.Models
         public int SnippetId { get; set; }
 
         [UIHint("Starred")]
-        [Display(Name ="Important")]
         public bool IsStarred { get; set; }
 
         public string Phrase { get; set; }

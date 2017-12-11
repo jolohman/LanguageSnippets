@@ -24,7 +24,8 @@ namespace LanguageSnippets.Web.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var model = new SnippetCreate();
+            return View(model);
         }
 
         [HttpPost]

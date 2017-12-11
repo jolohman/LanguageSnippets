@@ -48,13 +48,13 @@ namespace LanguageSnippets.Services
             }
         }
 
-        public SnippetDetail GetSnippetById(int snippetId)
+        public SnippetDetail GetSnippetById(int Id)
         {
             Snippet entity;
 
             using (var ctx = new ApplicationDbContext())
             {
-                entity = GetSnippetFromDatabase(ctx, snippetId);
+                entity = GetSnippetFromDatabase(ctx, Id);
             }
 
             if (entity == null) return new SnippetDetail();
@@ -66,6 +66,7 @@ namespace LanguageSnippets.Services
                     Language = entity.Language,
                     Meaning = entity.Meaning,
                     CreatedUtc = entity.CreatedUtc,
+                    SnippetId = entity.SnippetId,
                     ModifiedUtc = entity.ModifiedUtc,
 
                 };

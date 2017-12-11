@@ -9,9 +9,9 @@ namespace LanguageSnippets.Models
 {
     public class SnippetEdit
     {
+        [Required]
         public int SnippetId { get; set; }
 
-        [Display(Name = "Important")]
         public bool IsStarred { get; set; }
 
         [MaxLength(120)]
