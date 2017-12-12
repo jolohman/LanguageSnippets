@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageSnippets.Data", "La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageSnippets.Contracts", "LanguageSnippets.Contracts\LanguageSnippets.Contracts.csproj", "{DFCE93EF-A93B-4BF0-AE75-2081F654BDC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LanguageSnippets.API", "LanguageSnippets.API\LanguageSnippets.API.csproj", "{0B8E496D-4806-49EA-BCED-8B191A3EB3B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DFCE93EF-A93B-4BF0-AE75-2081F654BDC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFCE93EF-A93B-4BF0-AE75-2081F654BDC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DFCE93EF-A93B-4BF0-AE75-2081F654BDC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B8E496D-4806-49EA-BCED-8B191A3EB3B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B8E496D-4806-49EA-BCED-8B191A3EB3B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B8E496D-4806-49EA-BCED-8B191A3EB3B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B8E496D-4806-49EA-BCED-8B191A3EB3B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using LanguageSnippets.API.Models;
 using LanguageSnippets.API.Providers;
 using LanguageSnippets.API.Results;
+using LanguageSnippets.Data;
 
 namespace LanguageSnippets.API.Controllers
 {

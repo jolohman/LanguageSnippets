@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using LanguageSnippets.API.Models;
+using LanguageSnippets.Data;
 
 namespace LanguageSnippets.API.Providers
 {

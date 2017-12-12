@@ -13,6 +13,10 @@ using LanguageSnippets.Data;
 
 namespace LanguageSnippets.Web.Controllers
 {
+    //Adding SSL to an app
+    #if !DEBUG
+        [RequireHttps]
+    #endif
     [Authorize]
     public class AccountController : Controller
     {
@@ -66,7 +70,7 @@ namespace LanguageSnippets.Web.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -424,7 +428,7 @@ namespace LanguageSnippets.Web.Controllers
             base.Dispose(disposing);
         }
 
-        #region Helpers
+#region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -481,6 +485,6 @@ namespace LanguageSnippets.Web.Controllers
                 context.HttpContext.GetOwinContext().Authentication.Challenge(properties, LoginProvider);
             }
         }
-        #endregion
+#endregion
     }
 }
