@@ -1,4 +1,5 @@
-﻿using LanguageSnippets.Models;
+﻿using LanguageSnippets.Contracts;
+using LanguageSnippets.Models;
 using LanguageSnippets.Services;
 using Microsoft.AspNet.Identity;
 using System;
@@ -12,12 +13,28 @@ namespace LanguageSnippets.Web.Controllers
     [Authorize]
     public class SnippetController : Controller
     {
+        private readonly Lazy<ISnippetService> _snippetService;
+
+        public SnippetController()
+        {
+            _snippetService = new Lazy<ISnippetService>(CreateSnippetService);
+        }
+
+        /// <summary>
+        /// Pricipally used for testing
+        /// </summary>
+        /// <param name="snippetService"></param>
+        public SnippetController(Lazy<ISnippetService> snippetService)
+        {
+            _snippetService = snippetService;
+        }
+
+
         // GET: Snippet
         public ActionResult Index()
         {
            
-            var service = CreateSnippetService();
-            var model = service.GetSnippet();
+            var model = _snippetService.Value.GetSnippet();
 
             return View(model);
         }
@@ -37,9 +54,7 @@ namespace LanguageSnippets.Web.Controllers
                 return View(model);
             }
 
-            var service = CreateSnippetService();
-
-            if (service.CreateSnippet(model))
+            if (_snippetService.Value.CreateSnippet(model))
             {
                 TempData["SaveResult"] = "Snippet was created!";
                 return RedirectToAction("Index");
@@ -52,16 +67,14 @@ namespace LanguageSnippets.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var service = CreateSnippetService();
-            var model = service.GetSnippetById(id);
+            var model = _snippetService.Value.GetSnippetById(id);
 
             return View(model);
         }
 
         public ActionResult Edit (int id)
         {
-            var service = CreateSnippetService();
-            var detail = service.GetSnippetById(id);
+            var detail = _snippetService.Value.GetSnippetById(id);
             var model =
                 new SnippetEdit
                 {
@@ -89,9 +102,7 @@ namespace LanguageSnippets.Web.Controllers
                 return View(model);
             }
 
-            var service = CreateSnippetService();
-
-            if (service.EditSnippet(model))
+            if (_snippetService.Value.EditSnippet(model))
             {
                 TempData["SaveResult"] = "Your note was updated";
                 return RedirectToAction("Index");
@@ -104,8 +115,7 @@ namespace LanguageSnippets.Web.Controllers
         [ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            var service = CreateSnippetService();
-            var model = service.GetSnippetById(id);
+            var model =_snippetService.Value.GetSnippetById(id);
 
             return View(model);
         }
@@ -115,9 +125,8 @@ namespace LanguageSnippets.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeletePost(int id)
         {
-            var service = CreateSnippetService();
 
-            service.DeleteSnippet(id);
+            _snippetService.Value.DeleteSnippet(id);
 
             TempData["SaveResult"] = "Your snippet was deleted";
 
