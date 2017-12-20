@@ -78,17 +78,18 @@
                     var snippetId = target.attr("data-id");
                     var starSet = target.hasClass("glyphicon-star");
 
+                    
                     $.ajax({
                         method: starSet ? "DELETE" : "PUT",
-                        url: "/api/snippets/" + nippetId + "/star",
+                        url: "/api/Snippets/" + snippetId + "/star",
                         data: null
                     })
                     .done(function (r) {
                         target.removeClass();
                         target.addClass("glyphicon " + (starSet ? "glyphicon-star-empty" : "glyphicon-star"));
                     })
-                        .fail(function (r) {
-                            console.log(r);
+                    .fail(function (r) {
+                        console.log(r);
                         alert("Failed to change star status");
                     });
                 });
