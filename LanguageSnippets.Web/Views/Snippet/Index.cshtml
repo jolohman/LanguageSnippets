@@ -21,11 +21,8 @@
     </div>
 }
 
-<table class="table">
+<table class="table table-responsive table-hover">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SnippetId)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.IsStarred)
         </th>
@@ -35,17 +32,13 @@
         <th>
             @Html.DisplayNameFor(model => model.Language)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CreatedUtc)
-        </th>
+
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SnippetId)
-        </td>
+    <tr class="info">
+
         <td>
             @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.SnippetId })
         </td>
@@ -55,9 +48,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Language)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreatedUtc)
-        </td>
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.SnippetId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SnippetId }) |
