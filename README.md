@@ -15,7 +15,7 @@ Is to make people more familiar with phrase that have learn in real the world. T
 
 - Navigate to Snippets in the top navigation bar.
 
-- Create some useful phrases like "A dime a dozon"
+- Create some useful phrases like "A dime a dozen"
 
 - Ensure that your snippet was created.
 
