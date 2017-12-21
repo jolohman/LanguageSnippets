@@ -22,3 +22,4 @@ Is to make people more familiar with phrase that have learn in real the world. T
 -Is to make a mobile version of this application so you can create snippets in the presence of your friends
 -Add a search/filter function to quickly find your snippets
 -Also add a phonetic column so you can and a reminder of how to say your snippet if needed
+ 
