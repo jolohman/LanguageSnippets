@@ -12,6 +12,7 @@ namespace LanguageSnippets.Models
         [Required]
         public int SnippetId { get; set; }
 
+        [Display(Name = "Useful")]
         public bool IsStarred { get; set; }
 
         [MaxLength(120)]

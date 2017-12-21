@@ -13,6 +13,7 @@ namespace LanguageSnippets.Models
         [MaxLength(120)]
         public string Phrase { get; set; }
 
+        [Display(Name = "Useful")]
         public bool IsStarred { get; set; }
 
         [MaxLength(140)]
