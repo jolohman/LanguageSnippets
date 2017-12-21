@@ -39,6 +39,14 @@ namespace LanguageSnippets.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Index1()
+        {
+
+            var model = _snippetService.Value.GetSnippet();
+
+            return View(model);
+        }
+
         public ActionResult Create()
         {
             var model = new SnippetCreate();
@@ -72,6 +80,12 @@ namespace LanguageSnippets.Web.Controllers
             return View(model);
         }
 
+        public ActionResult Answer(int id)
+        {
+            var model = _snippetService.Value.GetSnippetById(id);
+
+            return View(model);
+        }
         public ActionResult Edit (int id)
         {
             var detail = _snippetService.Value.GetSnippetById(id);

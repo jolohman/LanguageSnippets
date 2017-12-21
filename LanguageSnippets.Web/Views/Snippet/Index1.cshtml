@@ -1,61 +1,43 @@
 ﻿@model IEnumerable<LanguageSnippets.Models.SnippetListItem>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index1";
 }
 
-<h2>Index</h2>
+<h2>Review</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 
-@if(TempData.ContainsKey("SaveResult"))
-{
-
-    <div class="alert alert-success fade in" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-        @TempData["SaveResult"]
-    </div>
-}
-
-<table class="table table-responsive table-hover">
+<table class="table table-hover ">
     <tr class="success">
         <th>
             @Html.DisplayNameFor(model => model.IsStarred)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phrase)
+            @Html.DisplayNameFor(model => model.Meaning)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Language)
         </th>
-
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.SnippetId })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phrase)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Language)
-        </td>
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SnippetId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SnippetId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SnippetId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsStarred, new { Id = item.SnippetId })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Meaning)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language)
+            </td>
+            <td>
+                @Html.ActionLink("Answer", "Answer", new { id = item.SnippetId }) 
+            </td>
+        </tr>
+    }
 
 </table>
 
@@ -69,7 +51,7 @@
                     var snippetId = target.attr("data-id");
                     var starSet = target.hasClass("glyphicon-star");
 
-                    
+
                     $.ajax({
                         method: starSet ? "DELETE" : "PUT",
                         url: "/api/Snippets/" + snippetId + "/star",

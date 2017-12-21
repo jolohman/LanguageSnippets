@@ -263,6 +263,8 @@
     <Content Include="Views\Shared\DisplayTemplates\DateTimeOffset.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Starred.cshtml" />
     <Content Include="Views\Snippet\Details.cshtml" />
+    <Content Include="Views\Snippet\Index1.cshtml" />
+    <Content Include="Views\Snippet\Answer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -19,6 +19,8 @@ namespace LanguageSnippets.Models
 
         public string Language { get; set; }
 
+        public string Meaning { get; set; }
+
         [Display(Name = "Created")]
         public DateTimeOffset CreatedUtc { get; set; }
 

@@ -10,7 +10,7 @@
     <h4>SnippetDetail</h4>
     <hr />
     <dl class="dl-horizontal">
-       
+
         <dt>
             @Html.DisplayNameFor(model => model.Phrase)
         </dt>
@@ -36,6 +36,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.SnippetId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SnippetId)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.CreatedUtc)
         </dt>
 
@@ -43,13 +51,6 @@
             @Html.DisplayFor(model => model.CreatedUtc)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SnippetId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SnippetId)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.ModifiedUtc)

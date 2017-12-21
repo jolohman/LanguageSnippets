@@ -104,6 +104,7 @@ namespace LanguageSnippets.Services
                                 {
                                     SnippetId = e.SnippetId,
                                     Phrase = e.Phrase,
+                                    Meaning = e.Meaning,
                                     IsStarred = e.IsStarred,
                                     Language = e.Language,
                                     CreatedUtc = e.CreatedUtc,
