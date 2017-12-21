@@ -21,7 +21,7 @@ Is to make people more familiar with phrase that have learn in real the world. T
 
 - Navigate to Review to study your content
 
-###Language Snippets Plan
+### Language Snippets Plan
 
 - Is to make a mobile version of this application so you can create snippets in the presence of your friends
 
