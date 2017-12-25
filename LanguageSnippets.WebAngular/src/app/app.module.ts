@@ -4,7 +4,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { 
   MatToolbarModule,
-  MatButtonModule
+  MatButtonModule,
+  MatFormField,
+  MatInputModule,
+  MatFormFieldModule
  } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -23,7 +26,9 @@ import { RegistrationComponent } from './components/registration/registration.co
     FormsModule,
     ReactiveFormsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

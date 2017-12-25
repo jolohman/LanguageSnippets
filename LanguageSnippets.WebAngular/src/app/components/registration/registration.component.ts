@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBulider, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -8,9 +8,25 @@ import { FormBulider, FormGroup, FormControl } from '@angular/forms';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  private _registerForm: FormGroup;
+
+  constructor(private _form: FormBuilder) {
+    this.createForm();
+   }
 
   ngOnInit() {
+  }
+
+  createForm() {
+    this._registerForm = this._form.group({
+      email: new FormControl,
+      password: new FormControl,
+      confirmPassword: new FormControl
+    });
+  }
+
+  onSubmit() {
+    console.log(this._registerForm.value);
   }
 
 }
